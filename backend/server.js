@@ -1,12 +1,20 @@
-require("dotenv").config();
-const app = require("./src/app");
+require('dotenv').config();
+const app = require('./src/app');
 const { createServer } = require("http");
 const { Server } = require("socket.io");
-const httpServer = createServer(app);
 const generateResponse = require("./src/service/ai.service");
+const { text } = require('stream/consumers');
+
+
+const httpServer = createServer(app);
 const io = new Server(httpServer, {
-  /* options */
+
+    cors: {
+        origin: "http://localhost:5173", // Adjust 
+    }
+
 });
+
 const chatHistory = [
 
 ]
