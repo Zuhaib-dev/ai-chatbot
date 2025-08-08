@@ -14,11 +14,11 @@ io.on("connection", (socket) => {
     console.log("A user is dissconnectd");
   });
   socket.on("ai-message", async (data) => {
-    console.log("Recieved AI-Response🤞", data.prompt);
+    console.log("Ai message recieved:", data);
 
-    const response = await generateResponse(data.prompt);
-    console.log("AI-Response🤞", response);
-    socket.emit("ai-message-response",{response})
+    const mama = await generateResponse(data);
+    console.log("AI-Response", mama);
+    socket.emit("ai-message-response", { mama });
   });
 });
 httpServer.listen(3000, () => {
